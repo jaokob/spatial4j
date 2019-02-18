@@ -181,16 +181,6 @@ public class TestDistances extends RandomizedTest {
         .distance(ctx.makePoint(-81.05206968336057, 71.82629271026536), 98.9479297952497, -71.82629264390964), 0.00001);
   }
 
-  /*
-  @Test
-  public void testRelate() {
-    Point pCtr = pLL(-20, 84);
-    double d = 6894.1 * KM_TO_DEG;
-    Rectangle r = dc().calcBoxByDistFromPt(pCtr, d, ctx, null);
-    System.err.println("pirrio");
-    r.relate(pCtr);
-  }*/
-
   @Test
   public void testCalcBoxByDistFromPt() {
     // first test regression
