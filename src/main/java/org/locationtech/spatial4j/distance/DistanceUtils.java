@@ -74,8 +74,6 @@ public class DistanceUtils {
   public static final double EARTH_MEAN_RADIUS_MI = EARTH_MEAN_RADIUS_KM * KM_TO_MILES;
   public static final double EARTH_EQUATORIAL_RADIUS_MI = EARTH_EQUATORIAL_RADIUS_KM * KM_TO_MILES;
 
-  public static boolean[] flags = new boolean[7]; // Branch coverage array
-
   private DistanceUtils() {
   }
 
@@ -164,7 +162,7 @@ public class DistanceUtils {
     // by
     // using the definition of sine
     distance = SIN_45_AS_RADS * distance; // sin(Pi/4) == (2^0.5)/2 == opp/hyp == opp/distance, solve for opp, similarly
-                                          // for cosine
+    // for cosine
     for (int i = 0; i < center.length; i++) {
       result[i] = center[i] + distance;
     }
@@ -235,15 +233,27 @@ public class DistanceUtils {
    * Puts in range -180 &lt;= lon_deg &lt;= +180.
    */
   public static double normLonDEG(double lon_deg) {
-    if (lon_deg >= -180 && lon_deg <= 180)
+    if (lon_deg >= -180 && lon_deg <= 180) {
+
       return lon_deg;// common case, and avoids slight double precision shifting
+    }
+
     double off = (lon_deg + 180) % 360;
-    if (off < 0)
+    if (off < 0) {
+
       return 180 + off;
-    else if (off == 0 && lon_deg > 0)
+    }
+
+    else if (off == 0 && lon_deg > 0) {
+
       return 180;
-    else
+    }
+
+    else {
+
       return -180 + off;
+    }
+
   }
 
   /**
@@ -313,24 +323,6 @@ public class DistanceUtils {
     }
   }
 
-  private static void writeToFile() {
-    try {
-      String filename = "calcBoxByDistFromPt_deltaLonDEG.txt";
-      FileWriter fw = new FileWriter(filename, false); // the true will append the new data
-      fw.write("calcBoxByDistFromPt_deltaLonDEG \n");
-      int count = 0;
-      for (boolean b : flags) {
-        if (b)
-          count++;
-        fw.write(b + " ");
-      }
-      fw.write("\nCoverage: " + (Double.toString((double) count / flags.length)));
-      fw.close();
-    } catch (IOException ioe) {
-      System.err.println("IOException: " + ioe.getMessage());
-    }
-  }
-
   /**
    * The delta longitude of a point-distance. In other words, half the width of
    * the bounding box of a circle.
@@ -347,6 +339,26 @@ public class DistanceUtils {
       return toDegrees(result_rad);
     return 90;
   }
+
+  private static void writeToFile() {
+    try {
+      String filename = "calcBoxByDistFromPt_latHorizAxisDEG.txt";
+      FileWriter fw = new FileWriter(filename, false); // the true will append the new data
+      fw.write("calcBoxByDistFromPt_latHorizAxisDEG \n");
+      int count = 0;
+      for (boolean b : flags) {
+        if (b)
+          count++;
+        fw.write(b + " ");
+      }
+      fw.write("\nCoverage: " + (Double.toString((double) count / flags.length)));
+      fw.close();
+    } catch (IOException ioe) {
+      System.err.println("IOException: " + ioe.getMessage());
+    }
+  }
+
+  public static boolean[] flags = new boolean[7]; // Branch coverage array
 
   /**
    * The latitude of the horizontal axis (e.g. left-right line) of a circle. The

@@ -138,18 +138,46 @@ public class Range {
       return ctr;
     }
 
+    private static void writeToFile2() {
+      try {
+        String filename = "compareTo.txt";
+        FileWriter fw = new FileWriter(filename, false); // the true will append the new data
+        fw.write("compareTo \n");
+        int count = 0;
+        for (boolean b : flags2) {
+          if (b)
+            count++;
+          fw.write(b + " ");
+        }
+        fw.write("\nCoverage: " + (Double.toString((double) count / flags2.length)));
+        fw.close();
+      } catch (IOException ioe) {
+        System.err.println("IOException: " + ioe.getMessage());
+      }
+    }
+    public static boolean[] flags2 = new boolean[7]; // Branch coverage array
+
     public double compareTo(LongitudeRange b) {
       return diff(getCenter(), b.getCenter());
     }
 
+
     /** a - b (compareTo order).  < 0 if a < b */
     private static double diff(double a, double b) {
+
       double diff = a - b;
       if (diff <= 180) {
-        if (diff >= -180)
+        flags2[0] = true;
+        if (diff >= -180){
+          flags2[1] = true;
+          writeToFile2();
           return diff;
+        }
+        writeToFile2();
         return diff + 360;
       } else {
+        flags2[2] = true;
+        writeToFile2();
         return diff - 360;
       }
     }
@@ -210,7 +238,7 @@ public class Range {
         return WORLD_180E180W;
       }
       flags[6] = true;
-        writeToFile();
+      writeToFile();
       return new LongitudeRange(newMin.min, newMax.max);
 
     }
