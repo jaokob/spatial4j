@@ -120,8 +120,8 @@ public class TestShapesGeo extends AbstractTestShapes {
 
   @Test
   public void testRelate(){
+    //testing if function CircleImpl::relate can handle circles as input as a shape object
     Circle c = ctx.makeCircle(1,1,1);
-
     assertEquals(c.relate(c)==CONTAINS, true);
   }
 

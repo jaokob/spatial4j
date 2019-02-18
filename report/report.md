@@ -95,10 +95,6 @@ Report of old coverage:
 
 * DistanceUtils::calcBoxByDistFromPtDEG: 100%
 * CartesianDistCalc::equals: 25%
-* TestDistances::findClosestPointOnVertToPoint@188-214@. NOT DONE
-* TestDistances::checkBBox@154-186@ NOT DONE
-* BBoxCalculator::processRanges@142-177@ NOT DONE
-* BBoxCalculator::expandXRange@57-140@. MAYBE
 * ShapeFactoryImpl::rect@104-131@: 100%
 * CircleImpl::relate@120-133@. 89%
 

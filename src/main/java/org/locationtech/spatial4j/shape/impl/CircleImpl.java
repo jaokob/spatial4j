@@ -119,11 +119,6 @@ public class CircleImpl extends BaseShape<SpatialContext> implements Circle {
 
   @Override
   public SpatialRelation relate(Shape other) {
-    //System.err.println("struts");
-    int a = 0;
-    if(a == 0){
-      //return SpatialRelation.DISJOINT;
-    }
 //This shortcut was problematic in testing due to distinctions of CONTAINS/WITHIN for no-area shapes (lines, points).
 //    if (distance == 0) {
 //      return point.relate(other,ctx).intersects() ? SpatialRelation.WITHIN : SpatialRelation.DISJOINT;
@@ -146,7 +141,6 @@ public class CircleImpl extends BaseShape<SpatialContext> implements Circle {
     if (other instanceof Circle) {
       flags[3] = true;
       writeToFile();
-      System.err.println("pirko");
       return relate((Circle) other);
     }
     flags[4] = true;
@@ -155,14 +149,12 @@ public class CircleImpl extends BaseShape<SpatialContext> implements Circle {
   }
 
   public SpatialRelation relate(Point point) {
-    //System.err.println("struts");
     flags[5] = true;
     writeToFile();
     return contains(point.getX(),point.getY()) ? SpatialRelation.CONTAINS : SpatialRelation.DISJOINT;
   }
 
   public SpatialRelation relate(Rectangle r) {
-    //System.err.println("struts");
 
     //Note: Surprisingly complicated!
 
