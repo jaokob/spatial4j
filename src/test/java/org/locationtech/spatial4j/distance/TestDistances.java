@@ -8,6 +8,8 @@
 
 package org.locationtech.spatial4j.distance;
 
+import org.locationtech.spatial4j.distance.CartesianDistCalc;
+
 
 
 import com.carrotsearch.randomizedtesting.RandomizedTest;
@@ -112,6 +114,16 @@ public class TestDistances extends RandomizedTest {
             0.00001);
   }
 
+  /*
+  @Test
+  public void testRelate() {
+    Point pCtr = pLL(-20, 84);
+    double d = 6894.1 * KM_TO_DEG;
+    Rectangle r = dc().calcBoxByDistFromPt(pCtr, d, ctx, null);
+    System.err.println("pirrio");
+    r.relate(pCtr);
+  }*/
+
   @Test
   public void testCalcBoxByDistFromPt() {
     //first test regression
@@ -125,6 +137,8 @@ public class TestDistances extends RandomizedTest {
       assertEquals(SpatialRelation.CONTAINS,r.relate(pTgt));
       checkBBox(pCtr,d);
     }
+
+
 
     assertEquals("0 dist, horiz line",
         -45,dc().calcBoxByDistFromPt_yHorizAxisDEG(ctx.makePoint(-180, -45), 0, ctx),0);

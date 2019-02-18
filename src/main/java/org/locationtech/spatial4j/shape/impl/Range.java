@@ -180,10 +180,12 @@ public class Range {
     public Range expandTo(Range other) {
       flags[0] = true;
         writeToFile();
+      System.err.println("pirre");
       return expandTo((LongitudeRange) other);
     }
 
     public LongitudeRange expandTo(LongitudeRange other) {
+      System.err.println("kirre");
 
       LongitudeRange a, b;// a.ctr <= b.ctr
       if (this.compareTo(other) <= 0) {

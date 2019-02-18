@@ -8,12 +8,15 @@
 
 package org.locationtech.spatial4j.shape;
 
+
 import com.carrotsearch.randomizedtesting.RandomizedContext;
 import com.carrotsearch.randomizedtesting.annotations.Repeat;
 import org.locationtech.spatial4j.context.SpatialContext;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContext;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContextFactory;
+import org.locationtech.spatial4j.distance.DistanceCalculator;
 import org.locationtech.spatial4j.io.WKTReader;
+import org.locationtech.spatial4j.shape.impl.CircleImpl;
 import org.locationtech.spatial4j.shape.impl.PointImpl;
 import org.locationtech.spatial4j.shape.impl.RectangleImpl;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
@@ -294,6 +297,271 @@ public class JtsGeometryTest extends AbstractTestShapes {
     }
 
   }
+/*
+  @Test
+  public void testRelate(){
+    Point p = new Point() {
+      @Override
+      public void reset(double x, double y) {
+
+      }
+
+      @Override
+      public double getX() {
+        return 0;
+      }
+
+      @Override
+      public double getY() {
+        return 0;
+      }
+
+      @Override
+      public double getLat() {
+        return 0;
+      }
+
+      @Override
+      public double getLon() {
+        return 0;
+      }
+
+      @Override
+      public SpatialRelation relate(Shape other) {
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundingBox() {
+        return null;
+      }
+
+      @Override
+      public boolean hasArea() {
+        return false;
+      }
+
+      @Override
+      public double getArea(SpatialContext ctx) {
+        return 0;
+      }
+
+      @Override
+      public Point getCenter() {
+        return null;
+      }
+
+      @Override
+      public Shape getBuffered(double distance, SpatialContext ctx) {
+        return null;
+      }
+
+      @Override
+      public boolean isEmpty() {
+        return false;
+      }
+
+      @Override
+      public SpatialContext getContext() {
+        return null;
+      }
+    };
+
+
+    DistanceCalculator dc = new DistanceCalculator() {
+      @Override
+      public double distance(Point from, Point to) {
+        return 0;
+      }
+
+      @Override
+      public double distance(Point from, double toX, double toY) {
+        return 0;
+      }
+
+      @Override
+      public boolean within(Point from, double toX, double toY, double distance) {
+        return false;
+      }
+
+      @Override
+      public Point pointOnBearing(Point from, double distDEG, double bearingDEG, SpatialContext ctx, Point reuse) {
+        return null;
+      }
+
+      @Override
+      public Rectangle calcBoxByDistFromPt(Point from, double distDEG, SpatialContext ctx, Rectangle reuse) {
+        return null;
+      }
+
+      @Override
+      public double calcBoxByDistFromPt_yHorizAxisDEG(Point from, double distDEG, SpatialContext ctx) {
+        return 0;
+      }
+
+      @Override
+      public double area(Rectangle rect) {
+        return 0;
+      }
+
+      @Override
+      public double area(Circle circle) {
+        return 0;
+      }
+    };
+    Rectangle r = new Rectangle() {
+      @Override
+      public void reset(double minX, double maxX, double minY, double maxY) {
+
+      }
+
+      @Override
+      public double getWidth() {
+        return 0;
+      }
+
+      @Override
+      public double getHeight() {
+        return 0;
+      }
+
+      @Override
+      public double getMinX() {
+        return 0;
+      }
+
+      @Override
+      public double getMinY() {
+        return 0;
+      }
+
+      @Override
+      public double getMaxX() {
+        return 0;
+      }
+
+      @Override
+      public double getMaxY() {
+        return 0;
+      }
+
+      @Override
+      public boolean getCrossesDateLine() {
+        return false;
+      }
+
+      @Override
+      public SpatialRelation relateYRange(double minY, double maxY) {
+        return null;
+      }
+
+      @Override
+      public SpatialRelation relateXRange(double minX, double maxX) {
+        return null;
+      }
+
+      @Override
+      public SpatialRelation relate(Shape other) {
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundingBox() {
+        return null;
+      }
+
+      @Override
+      public boolean hasArea() {
+        return false;
+      }
+
+      @Override
+      public double getArea(SpatialContext ctx) {
+        return 0;
+      }
+
+      @Override
+      public Point getCenter() {
+        return null;
+      }
+
+      @Override
+      public Shape getBuffered(double distance, SpatialContext ctx) {
+        return null;
+      }
+
+      @Override
+      public boolean isEmpty() {
+        return false;
+      }
+
+      @Override
+      public SpatialContext getContext() {
+        return null;
+      }
+    };
+
+    SpatialContext sc = new SpatialContext(false, dc, r);
+    CircleImpl c = new CircleImpl(p, 2, sc);
+
+    Circle circle = new Circle() {
+      @Override
+      public void reset(double x, double y, double radiusDEG) {
+
+      }
+
+      @Override
+      public double getRadius() {
+        return 0;
+      }
+
+      @Override
+      public SpatialRelation relate(Shape other) {
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundingBox() {
+        return null;
+      }
+
+      @Override
+      public boolean hasArea() {
+        return false;
+      }
+
+      @Override
+      public double getArea(SpatialContext ctx) {
+        return 0;
+      }
+
+      @Override
+      public Point getCenter() {
+        return null;
+      }
+
+      @Override
+      public Shape getBuffered(double distance, SpatialContext ctx) {
+        return null;
+      }
+
+      @Override
+      public boolean isEmpty() {
+        return false;
+      }
+
+      @Override
+      public SpatialContext getContext() {
+        return null;
+      }
+    };
+    System.err.println("struts");
+
+    System.err.println(c.relate(circle));
+
+    assertEquals(SpatialRelation.CONTAINS,c.relate(circle));
+
+  }*/
 
   @Test
   public void testPolyRelatesToCircle() throws ParseException {

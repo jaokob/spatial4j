@@ -13,11 +13,13 @@ import com.carrotsearch.randomizedtesting.annotations.Repeat;
 import org.locationtech.spatial4j.context.SpatialContext;
 import org.locationtech.spatial4j.context.SpatialContextFactory;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContextFactory;
+import org.locationtech.spatial4j.distance.CartesianDistCalc;
 import org.locationtech.spatial4j.distance.DistanceCalculator;
 import org.locationtech.spatial4j.distance.DistanceUtils;
 import org.locationtech.spatial4j.distance.GeodesicSphereDistCalc;
 import org.locationtech.spatial4j.exception.InvalidShapeException;
 import org.junit.Test;
+import org.locationtech.spatial4j.shape.impl.CircleImpl;
 
 import java.util.Arrays;
 
@@ -114,6 +116,13 @@ public class TestShapesGeo extends AbstractTestShapes {
     }
     assertTrue(ctx.makeRectangle(0, 10, 0, 89).getBuffered(0.5, ctx).getBoundingBox().getWidth()
         > 11);
+  }
+
+  @Test
+  public void testRelate(){
+    Circle c = ctx.makeCircle(1,1,1);
+
+    assertEquals(c.relate(c)==CONTAINS, true);
   }
 
   @Test

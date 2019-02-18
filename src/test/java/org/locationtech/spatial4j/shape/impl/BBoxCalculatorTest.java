@@ -8,6 +8,7 @@
 
 package org.locationtech.spatial4j.shape.impl;
 
+
 import com.carrotsearch.randomizedtesting.annotations.Repeat;
 import org.locationtech.spatial4j.context.SpatialContext;
 import org.locationtech.spatial4j.shape.RandomizedShapeTest;
@@ -23,6 +24,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BBoxCalculatorTest extends RandomizedShapeTest {
+
+  @Test
+  public void testExpandTo(){
+    Range r = new Range(0,0);
+    System.err.println("klas");
+    r.expandTo(r);
+    //r.expandTo((Range.LongitudeRange)r);
+
+
+  }
 
   public BBoxCalculatorTest() {
     super(SpatialContext.GEO);
