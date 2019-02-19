@@ -1,8 +1,5 @@
 # Report for assignment 3
 
-This is a template for your report. You are free to modify it as needed.
-It is not required to use markdown for your report either, but the report
-has to be delivered in a standard, cross-platform format.
 
 ## Project
 
@@ -16,7 +13,7 @@ Spatial4j is a general purpose spatial / geospatial ASL licensed open-source Jav
 
 Did it build as documented?
     
-No issues with the onboarding at all. Just cloning the repo and then importing the project into and IDE like intelliJ did the trick
+No issues with the onboarding at all. Just cloning the repo and then importing the project into an IDE like intelliJ did the trick
 for most of the members of the group. Just be sure to use JDK 1.8, otherwise some tests will fail.
 
 
@@ -160,10 +157,10 @@ In functions such as DistanceUtils::calcBoxByDistFromPt_latHorizAxisDEG , there 
 without which the branch coverage would be quite higher otherwise. This dead code includes branches that are never entered 
 and thus reduce branch coverage. Therefore removing unreachable branches would both improve complexity as well as branch coverage. 
 
-As well as avoiding dead branches, avoiding branche clashes such as if-statements whose conditions are captured by other if-statements 
-in the same function could be anopther way to reduce complexity. 
+As well as avoiding dead branches, avoiding branch clashes such as if-statements whose conditions are captured by other if-statements 
+in the same function could be another way to reduce complexity. 
 
-## Effort spent
+## Statement of contribution 
 
 For each team member, how much time was spent in
 
@@ -171,21 +168,7 @@ Shiva: Contributed to early identification of complex functions as well as the r
 
 Jenny: Part 0: Early identification and evaluation of potential open source projects (including loc checking and test coverage). Pt 1: Selection of functions, automatic and manual calculation of function complexity, condensation graphs, description of said functions and complexity questions in report. Part 2: Two new tests to improve coverage (see test cases added).
 
-1. plenary discussions/meetings;
-
-2. discussions within parts of the group;
-
-3. reading documentation;
-
-4. configuration;
-
-5. analyzing code/output;
-
-6. writing documentation;
-
-7. writing code;
-
-8. running code?
+Jakob: Part 2: DIY (Ad hoc branch coverage tool together with Fredrik), also contributed to report.md and improved branch coverage for computeMutualDisjoint from 0 to 100%, see test cases added. 
 
 ## Overall experience
 
