@@ -170,6 +170,8 @@ Jenny: Part 0: Early identification and evaluation of potential open source proj
 
 Jakob: Part 2: DIY (Ad hoc branch coverage tool together with Fredrik), also contributed to report.md and improved branch coverage for computeMutualDisjoint from 0 to 100%, see test cases added. 
 
+Philip: Part 1: Manual calculation of function complexity, condensation graphs. Part 2: Two new tests to improve coverage (GeodesicSphereDistCalc::pointOnBearing from 33 % to 100 % and DistanceUtils::vectorDistance from 0 % to 100 %).
+
 ## Overall experience
 
 What are your main take-aways from this project? What did you learn?
