@@ -147,7 +147,7 @@ New branches: 14
 
 `testEquals()`
 
-`testRelated()`
+`testRelate()`
 
 ## Refactoring
 
@@ -171,6 +171,8 @@ Jenny: Part 0: Early identification and evaluation of potential open source proj
 Jakob: Part 2: DIY (Ad hoc branch coverage tool together with Fredrik), also contributed to report.md and improved branch coverage for computeMutualDisjoint from 0 to 100%, see test cases added. 
 
 Philip: Part 1: Manual calculation of function complexity, condensation graphs. Part 2: Two new tests to improve coverage (GeodesicSphereDistCalc::pointOnBearing from 33 % to 100 % and DistanceUtils::vectorDistance from 0 % to 100 %).
+
+Fredrik: Part 2: DIY (Ad hoc branch coverage tool together with Jakob). Improved branch coverage for CartesianDistCalc::equals from 25% to 75% and CircleImpl::relate from 88.9% to 100%, see test cases added. 
 
 ## Overall experience
 
