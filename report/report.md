@@ -169,6 +169,8 @@ For each team member, how much time was spent in
 
 Shiva: Contributed to early identification of complex functions as well as the required complexity analysis and evaluations. Added test cases to improved branch coverage of a specific function DistanceUtils:: DistLawsOfCosineRAD from 80% to 100%. Contributed to the report written in terms of responding to reflection questions and analysis. Added functionality to several functions in order to measure their branch coverage for the purpose of analyzing whether the branch coverhge can be improved. 
 
+Jenny: Part 0: Early identification and evaluation of potential open source projects (including loc checking and test coverage). Pt 1: Selection of functions, automatic and manual calculation of function complexity, condensation graphs, description of said functions and complexity questions in report. Part 2: Two new tests to improve coverage (see test cases added).
+
 1. plenary discussions/meetings;
 
 2. discussions within parts of the group;
