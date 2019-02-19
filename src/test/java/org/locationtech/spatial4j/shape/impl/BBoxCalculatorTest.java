@@ -8,6 +8,7 @@
 
 package org.locationtech.spatial4j.shape.impl;
 
+
 import com.carrotsearch.randomizedtesting.annotations.Repeat;
 import org.locationtech.spatial4j.context.SpatialContext;
 import org.locationtech.spatial4j.shape.RandomizedShapeTest;

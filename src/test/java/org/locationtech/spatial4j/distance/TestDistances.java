@@ -8,6 +8,8 @@
 
 package org.locationtech.spatial4j.distance;
 
+import org.locationtech.spatial4j.distance.CartesianDistCalc;
+
 
 
 import com.carrotsearch.randomizedtesting.RandomizedTest;

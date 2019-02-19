@@ -16,6 +16,9 @@ import org.locationtech.spatial4j.shape.Rectangle;
 import org.locationtech.spatial4j.shape.Shape;
 import org.locationtech.spatial4j.shape.SpatialRelation;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * A circle, also known as a point-radius, based on a {@link
  * org.locationtech.spatial4j.distance.DistanceCalculator} which does all the work. This
@@ -93,42 +96,84 @@ public class CircleImpl extends BaseShape<SpatialContext> implements Circle {
     return enclosingBox;
   }
 
+  private static boolean[] flags = new boolean[9];
+  private static void writeToFile(){
+    try
+    {
+      String filename= "relate.txt";
+      FileWriter fw = new FileWriter(filename,false); //the true will append the new data
+      fw.write("relate \n");
+      int count = 0;
+      for (boolean b :flags) {
+        if (b) count ++;
+        fw.write(b + " ");
+      }
+      fw.write("\nCoverage: " + (Double.toString((double) count/flags.length)) );
+      fw.close();
+    }
+    catch(IOException ioe)
+    {
+      System.err.println("IOException: " + ioe.getMessage());
+    }
+  }
+
   @Override
   public SpatialRelation relate(Shape other) {
 //This shortcut was problematic in testing due to distinctions of CONTAINS/WITHIN for no-area shapes (lines, points).
 //    if (distance == 0) {
 //      return point.relate(other,ctx).intersects() ? SpatialRelation.WITHIN : SpatialRelation.DISJOINT;
 //    }
-    if (isEmpty() || other.isEmpty())
+    if (isEmpty() || other.isEmpty()) {
+      flags[0] = true;
+      writeToFile();
       return SpatialRelation.DISJOINT;
+    }
     if (other instanceof Point) {
+      flags[1] = true;
+      writeToFile();
       return relate((Point) other);
     }
     if (other instanceof Rectangle) {
+      flags[2] = true;
+      writeToFile();
       return relate((Rectangle) other);
     }
     if (other instanceof Circle) {
+      flags[3] = true;
+      writeToFile();
       return relate((Circle) other);
     }
+    flags[4] = true;
+    writeToFile();
     return other.relate(this).transpose();
   }
 
   public SpatialRelation relate(Point point) {
+    flags[5] = true;
+    writeToFile();
     return contains(point.getX(),point.getY()) ? SpatialRelation.CONTAINS : SpatialRelation.DISJOINT;
   }
 
   public SpatialRelation relate(Rectangle r) {
+
     //Note: Surprisingly complicated!
 
     //--We start by leveraging the fact we have a calculated bbox that is "cheaper" than use of DistanceCalculator.
     final SpatialRelation bboxSect = enclosingBox.relate(r);
-    if (bboxSect == SpatialRelation.DISJOINT || bboxSect == SpatialRelation.WITHIN)
+    if (bboxSect == SpatialRelation.DISJOINT || bboxSect == SpatialRelation.WITHIN) {
+      flags[6] = true;
+      writeToFile();
       return bboxSect;
-    else if (bboxSect == SpatialRelation.CONTAINS && enclosingBox.equals(r))//nasty identity edge-case
+    }
+    else if (bboxSect == SpatialRelation.CONTAINS && enclosingBox.equals(r)) {//nasty identity edge-case
+      flags[7] = true;
+      writeToFile();
       return SpatialRelation.WITHIN;
+    }
     //bboxSect is INTERSECTS or CONTAINS
     //The result can be DISJOINT, CONTAINS, or INTERSECTS (not WITHIN)
-
+    flags[8] = true;
+    writeToFile();
     return relateRectanglePhase2(r, bboxSect);
   }
 

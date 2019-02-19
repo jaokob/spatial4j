@@ -14,6 +14,8 @@ import org.locationtech.spatial4j.distance.DistanceUtils;
 import org.locationtech.spatial4j.exception.InvalidShapeException;
 import org.locationtech.spatial4j.shape.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,8 +96,31 @@ public class ShapeFactoryImpl implements ShapeFactory {
     return pointXY(x, y); // or throw?
   }
 
+
+  private static boolean[] flags = new boolean[10];
+  private static void writeToFile(){
+    try
+    {
+      String filename= "rect.txt";
+      FileWriter fw = new FileWriter(filename,false); //the true will append the new data
+      fw.write("rect \n");
+      int count = 0;
+      for (boolean b :flags) {
+        if (b) count ++;
+        fw.write(b + " ");
+      }
+      fw.write("\nCoverage: " + (Double.toString((double) count/flags.length)) );
+      fw.close();
+    }
+    catch(IOException ioe)
+    {
+      System.err.println("IOException: " + ioe.getMessage());
+    }
+  }
+
   @Override
   public Rectangle rect(Point lowerLeft, Point upperRight) {
+    flags[0] = true;
     return rect(lowerLeft.getX(), upperRight.getX(),
             lowerLeft.getY(), upperRight.getY());
   }
@@ -104,29 +129,43 @@ public class ShapeFactoryImpl implements ShapeFactory {
   public Rectangle rect(double minX, double maxX, double minY, double maxY) {
     Rectangle bounds = ctx.getWorldBounds();
     // Y
-    if (minY < bounds.getMinY() || maxY > bounds.getMaxY())//NaN will pass
-      throw new InvalidShapeException("Y values ["+minY+" to "+maxY+"] not in boundary "+bounds);
-    if (minY > maxY)
+    if (minY < bounds.getMinY() || maxY > bounds.getMaxY()) {//NaN will pass
+      flags[1] = true;
+      throw new InvalidShapeException("Y values [" + minY + " to " + maxY + "] not in boundary " + bounds);
+    }
+    if (minY > maxY) {
+      flags[2] = true;
       throw new InvalidShapeException("maxY must be >= minY: " + minY + " to " + maxY);
+    }
     // X
     if (ctx.isGeo()) {
+      flags[3] = true;
       verifyX(minX);
       verifyX(maxX);
       //TODO consider removing this logic so that there is no normalization here
       //if (minX != maxX) {   USUALLY TRUE, inline check below
       //If an edge coincides with the dateline then don't make this rect cross it
       if (minX == 180 && minX != maxX) {
+        flags[4] = true;
         minX = -180;
       } else if (maxX == -180 && minX != maxX) {
+        flags[5] = true;
         maxX = 180;
       }
       //}
     } else {
-      if (minX < bounds.getMinX() || maxX > bounds.getMaxX())//NaN will pass
-        throw new InvalidShapeException("X values ["+minX+" to "+maxX+"] not in boundary "+bounds);
-      if (minX > maxX)
+      flags[6] = true;
+      if (minX < bounds.getMinX() || maxX > bounds.getMaxX()) {//NaN will pass
+        flags[7] = true;
+        throw new InvalidShapeException("X values [" + minX + " to " + maxX + "] not in boundary " + bounds);
+      }
+      if (minX > maxX) {
+        flags[8] = true;
         throw new InvalidShapeException("maxX must be >= minX: " + minX + " to " + maxX);
+      }
     }
+    flags[9] = true;
+    writeToFile();
     return new RectangleImpl(minX, maxX, minY, maxY, ctx);
   }
 

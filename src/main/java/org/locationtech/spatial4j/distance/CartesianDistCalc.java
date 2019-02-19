@@ -194,10 +194,7 @@ public class CartesianDistCalc extends AbstractDistanceCalculator {
 
   @Override
   public boolean equals(Object o) {
-    int a = 0;
-    if(a == 0){
-      //return false;
-    }
+
     if (this == o){
       flags2[0] = true;
       writeToFile2();

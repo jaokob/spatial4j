@@ -54,6 +54,8 @@ public class BBoxCalculator {
     expandXRange(minX, maxX);
   }//expandRange
 
+  private static boolean[] flags = new boolean[2];
+
   public void expandXRange(double minX, double maxX) {
     if (!ctx.isGeo()) {
       this.minX = Math.min(this.minX, minX);

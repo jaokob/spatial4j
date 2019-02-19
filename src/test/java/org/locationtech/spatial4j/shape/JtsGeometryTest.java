@@ -8,12 +8,15 @@
 
 package org.locationtech.spatial4j.shape;
 
+
 import com.carrotsearch.randomizedtesting.RandomizedContext;
 import com.carrotsearch.randomizedtesting.annotations.Repeat;
 import org.locationtech.spatial4j.context.SpatialContext;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContext;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContextFactory;
+import org.locationtech.spatial4j.distance.DistanceCalculator;
 import org.locationtech.spatial4j.io.WKTReader;
+import org.locationtech.spatial4j.shape.impl.CircleImpl;
 import org.locationtech.spatial4j.shape.impl.PointImpl;
 import org.locationtech.spatial4j.shape.impl.RectangleImpl;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
@@ -294,6 +297,7 @@ public class JtsGeometryTest extends AbstractTestShapes {
     }
 
   }
+
 
   @Test
   public void testPolyRelatesToCircle() throws ParseException {

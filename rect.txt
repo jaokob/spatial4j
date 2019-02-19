@@ -1,0 +1,3 @@
+rect 
+true true true true true true true true true true 
+Coverage: 1.0
