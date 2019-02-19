@@ -70,28 +70,17 @@ classes not being tested and overall line coverage. From that we could easily fi
 
 ### DYI
 
-Show a patch that show the instrumented code in main (or the unit
-test setup), and the ten methods where branch coverage is measured.
 
-The patch is probably too long to be copied here, so please add
-the git command that is used to obtain the patch instead:
-
-git diff ...
-
-What kinds of constructs does your tool support, and how accurate is
-its output?
+Our tool supports the default java double precision.
 
 ### Evaluation
 Some functions from the initial list have been removed due to having dead code and such.
 ##### Report of old coverage: 
 
-* JSON::write: (9/14) 64.3%
-* unwrapDateline: (8/12) 66.7%
 * relateRectangleCircleWrapsPol: (10/13) 92.3%
 * polyShapeWrite: (10/13) 76.9%
 * pointOnBearing: (2/3) 66.7%
 * DistanceToLineSegment: (4/5) 80.0%
-* expandTo: (0/7) 0%
 * computeMutualDisjoint: (0/4) 0%
 * DistanceUtils::vectorDistance: (0/5) 0%
 * CartesianDistCalc::pointOnBearing: (4/6) 66.7%
@@ -102,13 +91,10 @@ Some functions from the initial list have been removed due to having dead code a
 
 ##### Report of new coverage: 
 
-* JSON::write: (9/14) 64.3%
-* unwrapDateline: (8/12) 66.7%
 * relateRectangleCircleWrapsPol: (10/13) 92.3%
 * polyShapeWrite: (10/13) 76.9%
 * pointOnBearing: (<span style="color:red">**3**</span>/3) 100%
 * DistanceToLineSegment: (<span style="color:red">**5**</span>/5) 100.0%
-* expandTo: (0/7) 0%
 * computeMutualDisjoint: (<span style="color:red">**4**</span>/4) 100%
 * DistanceUtils::vectorDistance: (<span style="color:red">**5**</span>/5) 100%
 * CartesianDistCalc::pointOnBearing: (<span style="color:red">**6**</span>/6) 100%
